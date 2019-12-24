@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019-12-23 20:14
  */
 @Slf4j
-public class ActionCardMessageSender implements MessageSender<ActionCardMessageContent> {
+public class ActionCardMessageSender implements DingTalkMessageSender<ActionCardMessageContent> {
 
     @Override
     public void send(ActionCardMessageContent actionCardMessageContent) {

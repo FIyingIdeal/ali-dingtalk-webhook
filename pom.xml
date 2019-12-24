@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ali-dingtalk-webhook-core</module>
+        <module>ali-dingtalk-webhook-spring-boot-starter</module>
     </modules>
 
     <properties>

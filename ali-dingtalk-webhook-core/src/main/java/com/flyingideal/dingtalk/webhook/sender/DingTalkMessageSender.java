@@ -14,9 +14,9 @@ import org.slf4j.LoggerFactory;
  * @author yanchao
  * @date 2019-12-23 18:08
  */
-public interface MessageSender<M extends DingTalkMessageContent> {
+public interface DingTalkMessageSender<M extends DingTalkMessageContent> {
 
-    Logger logger = LoggerFactory.getLogger(MessageSender.class);
+    Logger logger = LoggerFactory.getLogger(DingTalkMessageSender.class);
 
     /**
      * 发送消息方法

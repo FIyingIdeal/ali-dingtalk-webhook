@@ -2,7 +2,7 @@
 
 ## 使用
 
-### maven引入
+### maven 依赖
 
 ```xml
 <dependency>
@@ -20,7 +20,7 @@
 
 ### 发消息
 
-发消息前需要指定一个发消息的地址，即群消息机器人的 webhook 地址，是一个 List ：
+发消息前需要指定一个发消息的地址，即群消息机器人的 webhook 地址，是一个 List，可以将消息同时发送到多个群 ：
 ```java
 private List<String> dingTalkServerUrls = Arrays.asList("https://oapi.dingtalk.com/robot/send?access_token==xxxx");
 ```
@@ -126,6 +126,32 @@ FeedCardMessageContent messageContent = new FeedCardMessageContent(
 );
 
 DingTalkMessageSenderUtils.sendFeedCardMessage(messageContent);
+```
+
+## Spring Boot Support
+
+### maven 依赖
+
+```xml
+<dependency>
+    <groupId>com.flyingideal</groupId>
+    <artifactId>ali-dingtalk-webhook-spring-boot-starter</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+### 使用
+
+```java
+@Autowired
+private TextMessageSender textMessageSender;
+
+@Test
+public void textDingTalkTest() {
+    List<String> urls = Arrays.asList("https://oapi.dingtalk.com/robot/send?access_token=xxxx");
+    TextMessageContent messageContent = new TextMessageContent("DingTalk webhook spring boot starter test!", null, urls);
+    textMessageSender.send(messageContent);
+}
 ```
 
 参考

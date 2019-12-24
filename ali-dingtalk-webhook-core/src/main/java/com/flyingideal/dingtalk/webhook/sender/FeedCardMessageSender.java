@@ -7,7 +7,7 @@ import com.flyingideal.dingtalk.webhook.content.FeedCardMessageContent;
  * @author yanchao
  * @date 2019-12-24 14:40
  */
-public class FeedCardMessageSender implements MessageSender<FeedCardMessageContent> {
+public class FeedCardMessageSender implements DingTalkMessageSender<FeedCardMessageContent> {
 
     @Override
     public void send(FeedCardMessageContent feedCardMessageContent) {

@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019-12-23 18:07
  */
 @Slf4j
-public class TextMessageSender implements MessageSender<TextMessageContent> {
+public class TextMessageSender implements DingTalkMessageSender<TextMessageContent> {
 
     @Override
     public void send(TextMessageContent textMessageContent) {

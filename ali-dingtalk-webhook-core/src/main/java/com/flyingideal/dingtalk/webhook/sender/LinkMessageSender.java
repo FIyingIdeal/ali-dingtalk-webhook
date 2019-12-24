@@ -2,7 +2,6 @@ package com.flyingideal.dingtalk.webhook.sender;
 
 import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.flyingideal.dingtalk.webhook.content.LinkMessageContent;
-import com.taobao.api.ApiException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019-12-23 18:36
  */
 @Slf4j
-public class LinkMessageSender implements MessageSender<LinkMessageContent> {
+public class LinkMessageSender implements DingTalkMessageSender<LinkMessageContent> {
 
     @Override
     public void send(LinkMessageContent linkMessageContent) {

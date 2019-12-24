@@ -2,7 +2,6 @@ package com.flyingideal.dingtalk.webhook.sender;
 
 import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.flyingideal.dingtalk.webhook.content.MarkdownMessageContent;
-import com.taobao.api.ApiException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -11,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2019-12-23 18:38
  */
 @Slf4j
-public class MarkdownMessageSender implements MessageSender<MarkdownMessageContent> {
+public class MarkdownMessageSender implements DingTalkMessageSender<MarkdownMessageContent> {
 
     @Override
     public void send(MarkdownMessageContent markdownMessageContent) {
