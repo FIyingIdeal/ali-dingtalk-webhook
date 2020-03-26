@@ -28,7 +28,7 @@ public interface DingTalkMessageSender<M extends DingTalkMessageContent> {
     void send(M messageContent, List<String> dingTalkServerUrls);
 
     /**
-     * 发送消息给 {@link DingTalkMessageContent#getServerUrls()} 地址
+     * 发送消息给指定的 webhock 地址
      * @param robotSendRequest  {@link OapiRobotSendRequest}
      * @param messageContent    {@link DingTalkMessageContent}
      * @param dingTalkServerUrls 发送地址，可发送给多个群
