@@ -20,16 +20,9 @@ public class MarkdownMessageContent implements DingTalkMessageContent {
     private String title;
     /** 内容 */
     private String text;
-    /** 发送地址，可发送给多个群 */
-    private List<String> dingTalkServerUrls;
 
     @Override
     public DingTalkMessageType getDingTalkMessageType() {
         return DingTalkMessageType.markdown;
-    }
-
-    @Override
-    public List<String> getServerUrls() {
-        return dingTalkServerUrls;
     }
 }

@@ -22,17 +22,9 @@ public class TextMessageContent implements DingTalkMessageContent {
     /** at（@）用户列表 */
     private List<String> atMobiles;
 
-    /** 发送地址，可发送给多个群 */
-    private List<String> dingTalkServerUrls;
-
     @Override
     public DingTalkMessageType getDingTalkMessageType() {
         return DingTalkMessageType.text;
-    }
-
-    @Override
-    public List<String> getServerUrls() {
-        return dingTalkServerUrls;
     }
 
     @Override

@@ -4,6 +4,8 @@ import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.flyingideal.dingtalk.webhook.content.MarkdownMessageContent;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 /**
  * 发送 markdown 类型的消息
  * @author yanchao
@@ -13,8 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 public class MarkdownMessageSender implements DingTalkMessageSender<MarkdownMessageContent> {
 
     @Override
-    public void send(MarkdownMessageContent markdownMessageContent) {
-        if (markdownMessageContent.getServerUrls() == null || markdownMessageContent.getServerUrls().isEmpty()) {
+    public void send(MarkdownMessageContent markdownMessageContent, List<String> dingTalkServerUrls) {
+        if (dingTalkServerUrls == null || dingTalkServerUrls.isEmpty()) {
             throw new IllegalArgumentException("Must specify at least one message sending address");
         }
         OapiRobotSendRequest robotSendRequest = new OapiRobotSendRequest();
@@ -24,6 +26,6 @@ public class MarkdownMessageSender implements DingTalkMessageSender<MarkdownMess
         markdown.setText(markdownMessageContent.getText());
         robotSendRequest.setMarkdown(markdown);
 
-        sendMessages(robotSendRequest, markdownMessageContent);
+        sendMessages(robotSendRequest, markdownMessageContent, dingTalkServerUrls);
     }
 }

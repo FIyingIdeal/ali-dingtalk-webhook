@@ -4,6 +4,8 @@ import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.flyingideal.dingtalk.webhook.content.TextMessageContent;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 /**
  * 发送 text 类型的消息
  * @author yanchao
@@ -13,8 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 public class TextMessageSender implements DingTalkMessageSender<TextMessageContent> {
 
     @Override
-    public void send(TextMessageContent textMessageContent) {
-        if (textMessageContent.getServerUrls() == null || textMessageContent.getServerUrls().isEmpty()) {
+    public void send(TextMessageContent textMessageContent, List<String> dingTalkServerUrls) {
+        if (dingTalkServerUrls == null || dingTalkServerUrls.isEmpty()) {
             throw new IllegalArgumentException("Must specify at least one message sending address");
         }
         OapiRobotSendRequest robotSendRequest = new OapiRobotSendRequest();
@@ -28,6 +30,6 @@ public class TextMessageSender implements DingTalkMessageSender<TextMessageConte
             robotSendRequest.setAt(at);
         }
 
-        sendMessages(robotSendRequest, textMessageContent);
+        sendMessages(robotSendRequest, textMessageContent, dingTalkServerUrls);
     }
 }

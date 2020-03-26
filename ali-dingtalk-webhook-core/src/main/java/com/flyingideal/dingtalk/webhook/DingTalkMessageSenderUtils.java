@@ -3,6 +3,8 @@ package com.flyingideal.dingtalk.webhook;
 import com.flyingideal.dingtalk.webhook.content.*;
 import com.flyingideal.dingtalk.webhook.sender.*;
 
+import java.util.List;
+
 /**
  * 发送消息工具类
  * @author yanchao
@@ -28,39 +30,39 @@ public class DingTalkMessageSenderUtils {
      * 发送 text 类型消息
      * @param textMessageContent    {@link TextMessageContent}
      */
-    public static void sendTextMessage(TextMessageContent textMessageContent) {
-        textMessageSender.send(textMessageContent);
+    public static void sendTextMessage(TextMessageContent textMessageContent, List<String> dingTalkServerUrls) {
+        textMessageSender.send(textMessageContent, dingTalkServerUrls);
     }
 
     /**
      * 发送 link 类型消息
      * @param linkMessageContent    {@link LinkMessageContent}
      */
-    public static void sendLinkMessage(LinkMessageContent linkMessageContent) {
-        linkMessageSender.send(linkMessageContent);
+    public static void sendLinkMessage(LinkMessageContent linkMessageContent, List<String> dingTalkServerUrls) {
+        linkMessageSender.send(linkMessageContent, dingTalkServerUrls);
     }
 
     /**
      * 发送 markdown 类型消息
      * @param markdownMessageContent    {@link MarkdownMessageContent}
      */
-    public static void sendMarkdownMessage(MarkdownMessageContent markdownMessageContent) {
-        markdownMessageSender.send(markdownMessageContent);
+    public static void sendMarkdownMessage(MarkdownMessageContent markdownMessageContent, List<String> dingTalkServerUrls) {
+        markdownMessageSender.send(markdownMessageContent, dingTalkServerUrls);
     }
 
     /**
      * 发送 actionCard 类型消息
      * @param actionCardMessageContent  {@link ActionCardMessageContent}
      */
-    public static void sendActionCardMessage(ActionCardMessageContent actionCardMessageContent) {
-        actionCardMessageSender.send(actionCardMessageContent);
+    public static void sendActionCardMessage(ActionCardMessageContent actionCardMessageContent, List<String> dingTalkServerUrls) {
+        actionCardMessageSender.send(actionCardMessageContent, dingTalkServerUrls);
     }
 
     /**
      * 发送 feedCard 类型消息
      * @param feedCardMessageContent    {@link FeedCardMessageContent}
      */
-    public static void sendFeedCardMessage(FeedCardMessageContent feedCardMessageContent) {
-        feedCardMessageSender.send(feedCardMessageContent);
+    public static void sendFeedCardMessage(FeedCardMessageContent feedCardMessageContent, List<String> dingTalkServerUrls) {
+        feedCardMessageSender.send(feedCardMessageContent, dingTalkServerUrls);
     }
 }

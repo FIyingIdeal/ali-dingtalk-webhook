@@ -3,6 +3,8 @@ package com.flyingideal.dingtalk.webhook.sender;
 import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.flyingideal.dingtalk.webhook.content.FeedCardMessageContent;
 
+import java.util.List;
+
 /**
  * @author yanchao
  * @date 2019-12-24 14:40
@@ -10,8 +12,8 @@ import com.flyingideal.dingtalk.webhook.content.FeedCardMessageContent;
 public class FeedCardMessageSender implements DingTalkMessageSender<FeedCardMessageContent> {
 
     @Override
-    public void send(FeedCardMessageContent feedCardMessageContent) {
-        if (feedCardMessageContent.getServerUrls() == null || feedCardMessageContent.getServerUrls().isEmpty()) {
+    public void send(FeedCardMessageContent feedCardMessageContent, List<String> dingTalkServerUrls) {
+        if (dingTalkServerUrls == null || dingTalkServerUrls.isEmpty()) {
             throw new IllegalArgumentException("Must specify at least one message sending address");
         }
 
@@ -21,6 +23,6 @@ public class FeedCardMessageSender implements DingTalkMessageSender<FeedCardMess
         feedCard.setLinks(feedCardMessageContent.getLinks());
         robotSendRequest.setFeedCard(feedCard);
 
-        sendMessages(robotSendRequest, feedCardMessageContent);
+        sendMessages(robotSendRequest, feedCardMessageContent, dingTalkServerUrls);
     }
 }

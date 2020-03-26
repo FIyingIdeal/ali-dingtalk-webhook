@@ -4,6 +4,8 @@ import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.flyingideal.dingtalk.webhook.content.ActionCardMessageContent;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 /**
  * @author yanchao
  * @date 2019-12-23 20:14
@@ -12,8 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ActionCardMessageSender implements DingTalkMessageSender<ActionCardMessageContent> {
 
     @Override
-    public void send(ActionCardMessageContent actionCardMessageContent) {
-        if (actionCardMessageContent.getServerUrls() == null || actionCardMessageContent.getServerUrls().isEmpty()) {
+    public void send(ActionCardMessageContent actionCardMessageContent, List<String> dingTalkServerUrls) {
+        if (dingTalkServerUrls == null || dingTalkServerUrls.isEmpty()) {
             throw new IllegalArgumentException("Must specify at least one message sending address");
         }
 
@@ -34,6 +36,6 @@ public class ActionCardMessageSender implements DingTalkMessageSender<ActionCard
         actionCard.setBtns(actionCardMessageContent.getBtns());
         robotSendRequest.setActionCard(actionCard);
 
-        sendMessages(robotSendRequest, actionCardMessageContent);
+        sendMessages(robotSendRequest, actionCardMessageContent, dingTalkServerUrls);
     }
 }

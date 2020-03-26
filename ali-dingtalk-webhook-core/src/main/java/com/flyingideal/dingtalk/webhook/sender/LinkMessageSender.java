@@ -4,6 +4,8 @@ import com.dingtalk.api.request.OapiRobotSendRequest;
 import com.flyingideal.dingtalk.webhook.content.LinkMessageContent;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 /**
  * 发送 link 类型消息
  * @author yanchao
@@ -13,8 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 public class LinkMessageSender implements DingTalkMessageSender<LinkMessageContent> {
 
     @Override
-    public void send(LinkMessageContent linkMessageContent) {
-        if (linkMessageContent.getServerUrls() == null || linkMessageContent.getServerUrls().isEmpty()) {
+    public void send(LinkMessageContent linkMessageContent, List<String> dingTalkServerUrls) {
+        if (dingTalkServerUrls == null || dingTalkServerUrls.isEmpty()) {
             throw new IllegalArgumentException("Must specify at least one message sending address");
         }
         OapiRobotSendRequest robotSendRequest = new OapiRobotSendRequest();
@@ -25,6 +27,6 @@ public class LinkMessageSender implements DingTalkMessageSender<LinkMessageConte
         link.setMessageUrl(linkMessageContent.getLinkMessageUrl());
         robotSendRequest.setLink(link);
 
-        sendMessages(robotSendRequest, linkMessageContent);
+        sendMessages(robotSendRequest, linkMessageContent, dingTalkServerUrls);
     }
 }

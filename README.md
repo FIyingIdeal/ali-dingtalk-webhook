@@ -36,7 +36,7 @@ content.setXXX();   // 设置属性
 TextMessageSender textMessageSender = new TextMessageSender();
 
 // 发送消息
-textMessageSender.send(content);
+textMessageSender.send(content, dingTalkServerUrls);
 ```
 
 更简单的方式：
@@ -46,7 +46,7 @@ TextMessageContent content = new TextMessageContent();
 content.setXXX();   // 设置属性
 
 // 使用 DingTalkMessageSenderUtils 发送指定类型的消息
-DingTalkMessageSenderUtils.sendTextMessage(content);
+DingTalkMessageSenderUtils.sendTextMessage(content, dingTalkServerUrls);
 
 ```
 
@@ -54,15 +54,15 @@ DingTalkMessageSenderUtils.sendTextMessage(content);
 
 ```java
 LinkMessageContent linkMessageContent = new LinkMessageContent("title", "text",
-                "https://www.baidu.com", dingTalkServerUrls);
-        DingTalkMessageSenderUtils.sendLinkMessage(linkMessageContent);
+                "https://www.baidu.com");
+        DingTalkMessageSenderUtils.sendLinkMessage(linkMessageContent, dingTalkServerUrls);
 ```
 
 - 发送 markdown 类型消息
 
 ```java
-MarkdownMessageContent markdownMessageContent = new MarkdownMessageContent("title", "markdown message", dingTalkServerUrls);
-        DingTalkMessageSenderUtils.sendMarkdownMessage(markdownMessageContent);
+MarkdownMessageContent markdownMessageContent = new MarkdownMessageContent("title", "markdown message");
+        DingTalkMessageSenderUtils.sendMarkdownMessage(markdownMessageContent, dingTalkServerUrls);
 ```
 
 - 发送 ActionCard 类型消息
@@ -74,10 +74,9 @@ MarkdownMessageContent markdownMessageContent = new MarkdownMessageContent("titl
             "0", // btnOrientation: 0-按钮竖直排列，1-按钮横向排列
             "0", // hideAvatar: 0-正常发消息者头像，1-隐藏发消息者头像
             "阅读全文",   // singleTitle
-            "https://www.dingtalk.com/",  // singleURL
-            dingTalkServerUrls
+            "https://www.dingtalk.com/"  // singleURL
     );
-    DingTalkMessageSenderUtils.sendActionCardMessage(messageContent);
+    DingTalkMessageSenderUtils.sendActionCardMessage(messageContent, dingTalkServerUrls);
     ```
     
     - 发送多按钮消息
@@ -97,10 +96,9 @@ MarkdownMessageContent markdownMessageContent = new MarkdownMessageContent("titl
             "markdown text",
             "0", // btnOrientation: 0-按钮竖直排列，1-按钮横向排列
             "0", // hideAvatar: 0-正常发消息者头像，1-隐藏发消息者头像
-            btns,// btns
-            dingTalkServerUrls
+            btns // btns
     );
-    DingTalkMessageSenderUtils.sendActionCardMessage(messageContent);
+    DingTalkMessageSenderUtils.sendActionCardMessage(messageContent, dingTalkServerUrls);
     ```
 
 - 发送 FeedCard 类型消息
@@ -120,12 +118,9 @@ List<OapiRobotSendRequest.Links> links = new ArrayList<>();
 links.add(links0);
 links.add(links1);
 
-FeedCardMessageContent messageContent = new FeedCardMessageContent(
-        links,
-        dingTalkServerUrls
-);
+FeedCardMessageContent messageContent = new FeedCardMessageContent(links);
 
-DingTalkMessageSenderUtils.sendFeedCardMessage(messageContent);
+DingTalkMessageSenderUtils.sendFeedCardMessage(messageContent, dingTalkServerUrls);
 ```
 
 ## Spring Boot Support
@@ -149,8 +144,8 @@ private TextMessageSender textMessageSender;
 @Test
 public void textDingTalkTest() {
     List<String> urls = Arrays.asList("https://oapi.dingtalk.com/robot/send?access_token=xxxx");
-    TextMessageContent messageContent = new TextMessageContent("DingTalk webhook spring boot starter test!", null, urls);
-    textMessageSender.send(messageContent);
+    TextMessageContent messageContent = new TextMessageContent("DingTalk webhook spring boot starter test!", null);
+    textMessageSender.send(messageContent, urls);
 }
 ```
 

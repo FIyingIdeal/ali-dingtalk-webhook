@@ -25,17 +25,9 @@ public class LinkMessageContent implements DingTalkMessageContent {
     /** 消息链接地址 */
     private String linkMessageUrl;
 
-    /** 发送地址，可发送给多个群 */
-    private List<String> dingTalkServerUrls;
-
     @Override
     public DingTalkMessageType getDingTalkMessageType() {
         return DingTalkMessageType.link;
-    }
-
-    @Override
-    public List<String> getServerUrls() {
-        return dingTalkServerUrls;
     }
 
 }

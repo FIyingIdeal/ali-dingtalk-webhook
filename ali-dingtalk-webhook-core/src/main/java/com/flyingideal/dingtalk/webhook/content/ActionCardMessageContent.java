@@ -52,33 +52,23 @@ public class ActionCardMessageContent implements DingTalkMessageContent {
      */
     private List<OapiRobotSendRequest.Btns> btns;
 
-    /** 发送地址，可发送给多个群 */
-    private List<String> dingTalkServerUrls;
-
     public ActionCardMessageContent(String title, String text, String btnOrientation, String hideAvatar,
-                                    String singleTitle, String singleURL, List<String> dingTalkServerUrls) {
+                                    String singleTitle, String singleURL) {
         this.title = title;
         this.text = text;
         this.btnOrientation = btnOrientation;
         this.hideAvatar = hideAvatar;
         this.singleTitle = singleTitle;
         this.singleURL = singleURL;
-        this.dingTalkServerUrls = dingTalkServerUrls;
     }
 
     public ActionCardMessageContent(String title, String text, String btnOrientation, String hideAvatar,
-                                    List<OapiRobotSendRequest.Btns> btns, List<String> dingTalkServerUrls) {
+                                    List<OapiRobotSendRequest.Btns> btns) {
         this.title = title;
         this.text = text;
         this.btnOrientation = btnOrientation;
         this.hideAvatar = hideAvatar;
         this.btns = btns;
-        this.dingTalkServerUrls = dingTalkServerUrls;
-    }
-
-    @Override
-    public List<String> getServerUrls() {
-        return this.dingTalkServerUrls;
     }
 
     @Override

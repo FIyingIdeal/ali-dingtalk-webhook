@@ -9,6 +9,8 @@ import com.taobao.api.ApiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 /**
  * 发送消息接口类
  * @author yanchao
@@ -21,16 +23,19 @@ public interface DingTalkMessageSender<M extends DingTalkMessageContent> {
     /**
      * 发送消息方法
      * @param messageContent    {@link DingTalkMessageContent}
+     * @param dingTalkServerUrls 发送地址，可发送给多个群
      */
-    void send(M messageContent);
+    void send(M messageContent, List<String> dingTalkServerUrls);
 
     /**
      * 发送消息给 {@link DingTalkMessageContent#getServerUrls()} 地址
      * @param robotSendRequest  {@link OapiRobotSendRequest}
      * @param messageContent    {@link DingTalkMessageContent}
+     * @param dingTalkServerUrls 发送地址，可发送给多个群
      */
-    default void sendMessages(OapiRobotSendRequest robotSendRequest, DingTalkMessageContent messageContent) {
-        for (String dingTalkServerUrl : messageContent.getServerUrls()) {
+    default void sendMessages(OapiRobotSendRequest robotSendRequest, DingTalkMessageContent messageContent,
+                              List<String> dingTalkServerUrls) {
+        for (String dingTalkServerUrl : dingTalkServerUrls) {
             try {
                 if (doSendMessage(robotSendRequest, dingTalkServerUrl)) {
                     logger.info("DingTalk {} message send success : title [{}], serverUrl [{}]",

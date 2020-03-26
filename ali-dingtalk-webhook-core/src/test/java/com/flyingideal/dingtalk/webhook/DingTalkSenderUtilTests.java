@@ -18,22 +18,22 @@ public class DingTalkSenderUtilTests {
 
     @Test
     public void textMessageSenderTest() {
-        TextMessageContent textMessageContent = new TextMessageContent("测试", null, dingTalkServerUrls);
-        DingTalkMessageSenderUtils.sendTextMessage(textMessageContent);
+        TextMessageContent textMessageContent = new TextMessageContent("测试", null);
+        DingTalkMessageSenderUtils.sendTextMessage(textMessageContent, dingTalkServerUrls);
     }
 
     @Test
     public void linkMessageSenderTest() {
         LinkMessageContent linkMessageContent = new LinkMessageContent("百度", "度娘",
-                "https://www.baidu.com", dingTalkServerUrls);
-        DingTalkMessageSenderUtils.sendLinkMessage(linkMessageContent);
+                "https://www.baidu.com");
+        DingTalkMessageSenderUtils.sendLinkMessage(linkMessageContent, dingTalkServerUrls);
     }
 
     @Test
     public void markdownSenderTest() {
         MarkdownMessageContent markdownMessageContent = new MarkdownMessageContent("好未来", "**TAL** \n " +
-                "![screenshot](@lADOpwk3K80C0M0FoA) \n", dingTalkServerUrls);
-        DingTalkMessageSenderUtils.sendMarkdownMessage(markdownMessageContent);
+                "![screenshot](@lADOpwk3K80C0M0FoA) \n");
+        DingTalkMessageSenderUtils.sendMarkdownMessage(markdownMessageContent, dingTalkServerUrls);
     }
 
     @Test
@@ -46,10 +46,8 @@ public class DingTalkSenderUtilTests {
                 "0",
                 "0",
                 "阅读全文",
-                "https://www.dingtalk.com/",
-                dingTalkServerUrls
-        );
-        DingTalkMessageSenderUtils.sendActionCardMessage(messageContent);
+                "https://www.dingtalk.com/");
+        DingTalkMessageSenderUtils.sendActionCardMessage(messageContent, dingTalkServerUrls);
     }
 
     @Test
@@ -71,10 +69,9 @@ public class DingTalkSenderUtilTests {
                         " Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划",
                 "0",
                 "0",
-                btns,
-                dingTalkServerUrls
+                btns
         );
-        DingTalkMessageSenderUtils.sendActionCardMessage(messageContent);
+        DingTalkMessageSenderUtils.sendActionCardMessage(messageContent, dingTalkServerUrls);
     }
 
     @Test
@@ -93,11 +90,8 @@ public class DingTalkSenderUtilTests {
         links.add(links0);
         links.add(links1);
 
-        FeedCardMessageContent messageContent = new FeedCardMessageContent(
-                links,
-                dingTalkServerUrls
-        );
+        FeedCardMessageContent messageContent = new FeedCardMessageContent(links);
 
-        DingTalkMessageSenderUtils.sendFeedCardMessage(messageContent);
+        DingTalkMessageSenderUtils.sendFeedCardMessage(messageContent, dingTalkServerUrls);
     }
 }

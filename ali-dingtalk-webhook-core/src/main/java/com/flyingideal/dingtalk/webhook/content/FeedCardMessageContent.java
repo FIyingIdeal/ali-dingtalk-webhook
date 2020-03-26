@@ -21,9 +21,6 @@ public class FeedCardMessageContent implements DingTalkMessageContent {
      */
     private List<OapiRobotSendRequest.Links> links;
 
-    /** 发送地址，可发送给多个群 */
-    private List<String> dingTalkServerUrls;
-
     @Override
     public String getTitle() {
         return null;
@@ -32,10 +29,5 @@ public class FeedCardMessageContent implements DingTalkMessageContent {
     @Override
     public DingTalkMessageType getDingTalkMessageType() {
         return DingTalkMessageType.feedCard;
-    }
-
-    @Override
-    public List<String> getServerUrls() {
-        return this.dingTalkServerUrls;
     }
 }
